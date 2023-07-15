@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const TextInput = ({ type, placeholder }: any) => {
+const TextInput = ({ type, placeholder, onChange }: any) => {
   const [showPassword, setShowPassword] = useState<Boolean>(false)
   const [isFocused, setIsFocused] = useState<Boolean>(false)
 
@@ -33,7 +33,7 @@ const TextInput = ({ type, placeholder }: any) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g id="Component 2" clip-path="url(#clip0_200_1887)">
+        <g id="Component 2" clipPath="url(#clip0_200_1887)">
           <g id="Group">
             <g id="account-circle">
               <path
@@ -61,7 +61,7 @@ const TextInput = ({ type, placeholder }: any) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g id="Component 1" clip-path="url(#clip0_200_1827)">
+        <g id="Component 1" clipPath="url(#clip0_200_1827)">
           <g id="Group">
             <g id="lock">
               <path
@@ -92,6 +92,9 @@ const TextInput = ({ type, placeholder }: any) => {
           className="outline-none w-full"
           type={showPassword ? 'text' : type}
           placeholder={placeholder}
+          onChange={(v) => {
+            if (onChange !== undefined) onChange(v.target.value)
+          }}
         />
       </div>
       {type === 'password' && (

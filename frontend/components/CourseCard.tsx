@@ -29,13 +29,15 @@ export const CourseCard = ({
           {certificate && (
             <div className="flex px-2 py-1 bg-lightBlueTp rounded-sm">
               <img src="/primary-check.svg"></img>
-              <span className="text-xs ml-1">ได้รับเกียรติบัตร</span>
+              <span className="text-xs ml-1 text-primary">
+                ได้รับเกียรติบัตร
+              </span>
             </div>
           )}
           {test && (
             <div className="flex bg-[#B5EBCC] px-2 py-1 rounded-sm">
               <img src="/green-check.svg"></img>
-              <span className="text-xs ml-1">มีสอบ</span>
+              <span className="text-xs ml-1 text-success">มีสอบ</span>
             </div>
           )}
         </div>

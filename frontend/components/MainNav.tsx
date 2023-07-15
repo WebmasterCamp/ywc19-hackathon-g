@@ -1,4 +1,9 @@
+import { getUserDetail } from '@/helper/user-helper'
+import { useRouter } from 'next/router'
+
 const MainNav = () => {
+  const user = getUserDetail()
+  const router = useRouter()
   return (
     <div className="flex items-center gap-5 mt-4 max-w-[1200px] mx-auto ">
       <img src="/logo.svg" className="h-[28px]"></img>
@@ -16,15 +21,24 @@ const MainNav = () => {
           </div>
         </div>
       </div>
-      <div className="flex">
-        <div className="bg-[#D9D9D9]  rounded-[100%] w-[48px] h-[48px]"></div>
-        <div className="ml-2">
-          <div>K. ณัฐมน เลิศสุนทร</div>
-          <div className="text-sm text-[#9D9D9D]" style={{ marginTop: -2 }}>
-            090-xxx-xxx
+      {user ? (
+        <div className="flex">
+          <div className="bg-[#D9D9D9]  rounded-[100%] w-[48px] h-[48px]"></div>
+          <div className="ml-2">
+            <div>K. {getUserDetail()?.username || '-'}</div>
+            <div className="text-sm text-[#9D9D9D]" style={{ marginTop: -2 }}>
+              090-xxx-xxx
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <button
+          onClick={() => router.push('/login')}
+          className=" bg-primary rounded-xs text-white py-3 text-sm font-light px-4"
+        >
+          เข้าสู่ระบบ / ลงทะเบียน
+        </button>
+      )}
     </div>
   )
 }

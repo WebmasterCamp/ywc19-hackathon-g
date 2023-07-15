@@ -1,5 +1,6 @@
 import LoadingScreen from '@/components/LoadingScreen'
 import TextInput from '@/components/TextInput'
+import { saveUserDetail } from '@/helper/user-helper'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -8,12 +9,13 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState<Boolean>(false)
 
   const router = useRouter()
-
+  const [username, setUsername] = useState<string>('')
   const loginHandle = () => {
     setIsLoading(true)
+    saveUserDetail({ username })
     setTimeout(() => {
       setIsLoading(false)
-      router.push('/home')
+      router.push('/registering')
     }, 1000)
   }
 
@@ -22,7 +24,7 @@ const Login = () => {
       <LoadingScreen isLoading={isLoading} />
       <div className="bg-[#ACACAC] rounded-br-[5%] overflow-hidden relative">
         <div className="absolute left-1/2 font-mont -translate-x-1/2 bottom-10 z-10 text-white text-4xl font-semibold">
-          ADVANCELANE
+          มือโปร
         </div>
         <img
           className="w-full h-screen object-cover"
@@ -40,7 +42,13 @@ const Login = () => {
           </div>
           <div>
             <div className="mb-4">
-              <TextInput type="text" placeholder="ชื่อผู้ใช้" />
+              <TextInput
+                type="text"
+                placeholder="ชื่อผู้ใช้"
+                onChange={(val) => {
+                  setUsername(val)
+                }}
+              />
             </div>
             <div className="mb-4">
               <TextInput type="password" placeholder="รหัสผ่าน" />

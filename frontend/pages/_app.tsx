@@ -8,7 +8,9 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <MainNav />
+      {!['/login', '/register', '/registering'].includes(router.pathname) && (
+        <MainNav />
+      )}
       <Component {...pageProps} />
     </>
   )
