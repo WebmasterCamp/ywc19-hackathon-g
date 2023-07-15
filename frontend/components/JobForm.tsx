@@ -1,24 +1,24 @@
-import { salaryMapping, SalaryOptions } from '@/constant/enum'
+import { jobMapping, JobOptions } from '@/constant/enum'
 import { useState } from 'react'
 
-export const SalaryForm = ({
+export const JobForm = ({
   selectedOption,
   handleOptionChange,
 }: {
-  selectedOption?: SalaryOptions
-  handleOptionChange: (selectedOption: SalaryOptions) => void
+  selectedOption?: JobOptions
+  handleOptionChange: (selectedOption: JobOptions) => void
 }) => {
   return (
     <div className="bg-white px-8 pb-10 pt-5 rounded-sm">
-      <p className="text-[28px] text-primary font-medium">
-        เงินเดือนที่ต้องการ
+      <p className="text-[28px] text-primary font-medium">ประเภทของงาน</p>
+      <p className="text-[16px] mb-4">
+        กรุณาระบุประเภทของงานที่ต้องการและเหมาะสมตามประสบการณ์ของคุณ
       </p>
-      <p className="text-[16px] mb-4">กรุณาระบุเงินเดือนที่ต้องการ</p>
-      {Object.keys(SalaryOptions).map((option) => (
+      {Object.keys(JobOptions).map((option) => (
         <RadioRow
           option={option}
           selectedOption={selectedOption}
-          handleOptionChange={() => handleOptionChange(SalaryOptions[option])}
+          handleOptionChange={() => handleOptionChange(JobOptions[option])}
         />
       ))}
     </div>
@@ -53,7 +53,7 @@ function RadioRow({ option, selectedOption, handleOptionChange }) {
           (selectedOption !== option ? 'text-[#565353]' : '')
         }
       >
-        {salaryMapping[option]}
+        {jobMapping[option]}
       </span>
     </div>
   )
