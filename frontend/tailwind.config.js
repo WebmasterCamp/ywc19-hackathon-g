@@ -13,6 +13,7 @@ module.exports = {
     fontFamily: {
       sans: ["'Kanit'", 'sans-serif'],
       serif: ["'Kanit'", 'serif'],
+      mont: ["'Montserrat'", 'sans-serif'],
     },
     colors: {
       primary: 'rgba(5, 96, 253, 1)',
@@ -28,6 +29,7 @@ module.exports = {
       bermuda: '#78dcca',
       gray: {
         100: 'rgba(229, 234, 239, 1)',
+        200: '#888888',
       },
     },
     borderRadius: {
