@@ -3,7 +3,7 @@ module.exports = {
   swcMinify: true,
   reactStrictMode: true,
   experimental: {
-    appDir: true,
+    appDir: false,
     typedRoutes: true,
   },
   output: 'standalone',
