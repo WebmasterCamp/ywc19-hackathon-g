@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
-import { Survey } from './Survey.entity'
+import { Survey } from './survey.entity'
 
 @Entity()
 export class User {

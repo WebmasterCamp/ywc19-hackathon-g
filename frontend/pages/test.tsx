@@ -20,7 +20,7 @@ export default function Main() {
           </div>
         </div>
         <div className="flex">
-          <div className="bg-[#D9D9D9] rounded w-[48px] h-[48px]"></div>
+          <div className="bg-[#D9D9D9]  rounded-[100%] w-[48px] h-[48px]"></div>
           <div className="ml-2">
             <div>K. ณัฐมน เลิศสุนทร</div>
             <div className="text-sm text-[#9D9D9D]" style={{ marginTop: -2 }}>
@@ -34,9 +34,11 @@ export default function Main() {
       </div>
       <div className="text-lg text-center ">หางานและคอร์สที่ใช่สำหรับคุณ !</div>
       <img src="/banner.svg" className="mt-6"></img>
-      <div className="flex">
-        <div className="bg-primary w-[48px] h-[48px]"></div>
-        <div className="text-2xl">คอร์สที่แนะนำสำหรับคุณ</div>
+      <div className="flex items-center gap-2 mt-5">
+        <div className="bg-lightBlue rounded-xs w-[48px] h-[48px] flex items-center justify-center">
+          <img src="/learning.svg" className="w-[32px] h-[32px]"></img>
+        </div>
+        <div className="text-2xl font-medium">คอร์สที่แนะนำสำหรับคุณ</div>
       </div>
     </div>
   )

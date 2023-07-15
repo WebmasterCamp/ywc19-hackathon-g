@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common'
 import { SurveyService } from './survey.service'
 import { ApiTags } from '@nestjs/swagger'
 import { SurveyDto } from './survey.dto'
-import { Survey } from 'src/entities/Survey.entity'
+import { Survey } from 'src/entities/survey.entity'
 
 @ApiTags('survey')
 @Controller('survey')

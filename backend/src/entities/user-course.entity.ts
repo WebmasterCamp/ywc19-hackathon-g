@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm'
 import { Course } from './course.entity'
-import { Survey } from './Survey.entity'
+import { Survey } from './survey.entity'
 import { User } from './user.entity'
 
 @Entity()
