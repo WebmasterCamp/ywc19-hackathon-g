@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/entities/user.entity';
-import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { User } from 'src/entities/user.entity'
+import { Repository } from 'typeorm'
 
 @Injectable()
 export class UsersService {
@@ -21,15 +21,15 @@ export class UsersService {
       username,
       hashedPassword,
       passwordSalt,
-    });
-    return result;
+    })
+    return result
   }
 
-  async findOne(email: string) {
+  async findOne(username: string) {
     const user = this.usersRepository.findOne({
-      where: { email },
-      select: ['id', 'passwordSalt', 'hashedPassword', 'email'],
-    });
-    return user;
+      where: { username },
+      select: ['id', 'passwordSalt', 'hashedPassword', 'email', 'username'],
+    })
+    return user
   }
 }
