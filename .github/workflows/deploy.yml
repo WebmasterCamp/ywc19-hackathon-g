@@ -48,3 +48,6 @@ jobs:
           image: ghcr.io/webmastercamp/${{ github.event.repository.name }}-${{ matrix.buildTarget }}@${{ steps.build-and-push.outputs.digest }}
           deploymentName: ${{ matrix.buildTarget }}
           port: 3000
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
