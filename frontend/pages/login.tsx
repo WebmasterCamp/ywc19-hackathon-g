@@ -1,11 +1,27 @@
+import LoadingScreen from '@/components/LoadingScreen'
 import TextInput from '@/components/TextInput'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState<Boolean>(false)
+
+  const router = useRouter()
+
+  const loginHandle = () => {
+    setIsLoading(true)
+    setTimeout(() => {
+      setIsLoading(false)
+      router.push('/home')
+    }, 1000)
+  }
+
   return (
     <div className="h-screen grid grid-cols-2 bg-lightBlue">
+      <LoadingScreen isLoading={isLoading} />
       <div className="bg-[#ACACAC] rounded-br-[5%] overflow-hidden relative">
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-10 z-10 text-white text-4xl font-semibold">
+        <div className="absolute left-1/2 font-mont -translate-x-1/2 bottom-10 z-10 text-white text-4xl font-semibold">
           ADVANCELANE
         </div>
         <img
@@ -36,11 +52,12 @@ const Login = () => {
               <span className="underline ml-2 cursor-pointer">ลงทะเบียน</span>
             </Link>
           </div>
-          <Link href="/home">
-            <button className="w-full bg-primary rounded-xs text-white py-3 text-sm font-light">
-              เข้าสู่ระบบ
-            </button>
-          </Link>
+          <button
+            onClick={loginHandle}
+            className="w-full bg-primary rounded-xs text-white py-3 text-sm font-light"
+          >
+            เข้าสู่ระบบ
+          </button>
         </div>
       </div>
     </div>
