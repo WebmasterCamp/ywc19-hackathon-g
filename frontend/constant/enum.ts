@@ -59,3 +59,13 @@ export const contractMapping = {
   [ContractOptions.TEMPORARY]: 'ชั่วคราว',
   [ContractOptions.FREELANCE]: 'ฟรีแลนซ์',
 }
+
+export type Course = {
+  id?: string
+  name: string
+  description: string
+  location: string
+  dateTime: string
+  certificate?: boolean
+  test?: boolean
+}
