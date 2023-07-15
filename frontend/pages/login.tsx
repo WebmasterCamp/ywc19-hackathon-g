@@ -4,7 +4,10 @@ import Link from 'next/link'
 const Login = () => {
   return (
     <div className="h-screen grid grid-cols-2 bg-lightBlue">
-      <div className="bg-[#ACACAC] rounded-br-[5%] overflow-hidden">
+      <div className="bg-[#ACACAC] rounded-br-[5%] overflow-hidden relative">
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-10 z-10 text-white text-4xl font-semibold">
+          ADVANCELANE
+        </div>
         <img
           className="w-full h-screen object-cover"
           src="/images/login.png"
