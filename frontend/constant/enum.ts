@@ -19,11 +19,13 @@ export enum JobOptions {
   ELECTRICAL = 'ELECTRICAL',
   CONSTRUCTION = 'CONSTRUCTION',
   OTHERS = 'OTHERS',
+  WATER = 'WATER',
 }
 
 export const jobMapping = {
   [JobOptions.AC]: 'ช่างแอร์',
   [JobOptions.ELECTRICAL]: 'ช่างไฟฟ้า',
+  [JobOptions.WATER]: 'ช่างประปา',
   [JobOptions.CONSTRUCTION]: 'ช่างก่อสร้าง',
   [JobOptions.OTHERS]: 'อื่นๆ',
 }

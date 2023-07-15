@@ -69,8 +69,8 @@ export default function Home() {
         <p className="text-lg text-center pb-[45px]">
           จับคู่งานช่วยให้คุณมีโอกาสที่เหมาะสมตามทักษะและความชอบของคุณ
         </p>
-        <div className="flex max-w-[1200px] mx-auto pb-[68px]">
-          <div className="w-1/2 flex flex-col mt-5  gap-10">
+        <div className="flex max-w-[1200px] mx-auto pb-[68px] justify-center lg:justify-between px-5 lg:px-0">
+          <div className="flex-col mt-5  gap-10  hidden lg:flex">
             {steps.map((step) => (
               <>
                 <Step
@@ -83,7 +83,7 @@ export default function Home() {
               </>
             ))}
           </div>
-          <div className="w-1/2">
+          <div className="w-full max-w-[600px]">
             {currectForm === FormSteps.SALARY && (
               <SalaryForm
                 selectedOption={salary}
