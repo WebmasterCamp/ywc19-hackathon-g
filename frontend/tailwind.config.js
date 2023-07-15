@@ -14,6 +14,27 @@ module.exports = {
       sans: ["'Kanit'", 'sans-serif'],
       serif: ["'Kanit'", 'serif'],
     },
+    colors: {
+      primary: 'rgba(5, 96, 253, 1)',
+      lightBlue: 'rgba(234, 243, 252, 1)',
+      transparent: 'transparent',
+      white: '#ffffff',
+      purple: '#3f3cbb',
+      midnight: '#121063',
+      metal: '#565584',
+      tahiti: '#3ab7bf',
+      silver: '#ecebff',
+      'bubble-gum': '#ff77e9',
+      bermuda: '#78dcca',
+      gray: {
+        100: 'rgba(229, 234, 239, 1)',
+      },
+    },
+    borderRadius: {
+      xs: '8px',
+      sm: '12px',
+      md: '14px',
+    },
   },
   plugins: [],
 }
