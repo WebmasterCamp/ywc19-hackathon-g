@@ -30,7 +30,10 @@ module.exports = {
       gray: {
         100: 'rgba(229, 234, 239, 1)',
         200: '#888888',
+        300: 'rgba(86, 83, 83, 1)',
       },
+      success: 'rgba(0, 171, 84, 1)',
+      lightBlueTp: 'rgba(5, 96, 253, 0.10)',
     },
     borderRadius: {
       xs: '8px',
