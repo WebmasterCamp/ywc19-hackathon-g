@@ -44,4 +44,5 @@ jobs:
         uses: WebmasterCamp/deploy-action@main
         with:
           image: ghcr.io/webmastercamp/${{ github.event.repository.name }}-backend@${{ steps.build-and-push.outputs.digest }}
-          port: 3000
+          deploymentName: backend
+          port: 3030
