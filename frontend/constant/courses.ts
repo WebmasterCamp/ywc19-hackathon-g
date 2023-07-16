@@ -57,7 +57,7 @@ export const courses: Course[] = [
     test: true,
   },
   {
-    id: '',
+    id: '7',
     name: 'ติดตั้ง/ซ่อมปั๊มน้ำ',
     description: 'เรียนรู้การติดตั้งและซ่อมปั๊มน้ำขนาดเล็ก',
     schedule: [],

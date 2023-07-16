@@ -27,9 +27,9 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
       <div className="flex items-center">
         <div className="flex items-center w-full">
           <div className="text-3xl font-semibold mr-4">
-            {matchedCourse.name}
+            {matchedCourse?.name}
           </div>
-          {matchedCourse.certificate && (
+          {matchedCourse?.certificate && (
             <div className="flex bg-lightBlueTp px-2 py-1 rounded-md items-center mr-2 h-max">
               <img src="/primary-check.svg"></img>
               <div className="text-xs ml-1 whitespace-nowrap text-primary font-medium">
@@ -37,7 +37,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
               </div>
             </div>
           )}
-          {matchedCourse.test && (
+          {matchedCourse?.test && (
             <div className="flex bg-[#caf5dc] px-2 py-1 rounded-md items-center h-max">
               <img src="/green-check.svg"></img>
               <div className="text-xs text-[#00AB54] ml-1 whitespace-nowrap">
@@ -77,7 +77,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
           สมัครเรียน
         </div>
       </div>
-      <div className="text-lg mb-1">{matchedCourse.description}</div>
+      <div className="text-lg mb-1">{matchedCourse?.description}</div>
       <div className="flex items-center text-sm">
         <div className="flex items-center">
           <svg
@@ -103,7 +103,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
             />
           </svg>
           <span className="text-[#9D9D9D] ml-1">สถานที่ : </span>
-          <span className="ml-1">{matchedCourse.location}</span>
+          <span className="ml-1">{matchedCourse?.location}</span>
         </div>
         <span className="text-[#9D9D9D] mx-3 font-light">|</span>
         <div className="flex items-center">
@@ -129,7 +129,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
             </defs>
           </svg>
           <span className="text-[#9D9D9D] ml-1">ระยะเวลา : </span>
-          <span className="ml-1">{matchedCourse.duration}</span>
+          <span className="ml-1">{matchedCourse?.duration}</span>
         </div>
       </div>
       <div>
