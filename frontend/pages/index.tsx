@@ -118,8 +118,12 @@ export default function Main() {
                   </div>
                 </div>
               ) : (
-                <div className="text-white text-4xl max-w-[390px]">
-                  ยินดีด้วย คุณเรียนคอร์ส {course?.name}จบแล้ว !
+                <div className="text-white text-4xl hidden md:block">
+                  <div className="flex items-start gap-2">
+                    <img src="/congrats.svg" className="mt-2"></img>
+                    ยินดีด้วย คุณเรียนคอร์ส <br />
+                    {course?.name}จบแล้ว !
+                  </div>
                 </div>
               )}
             </div>
@@ -135,11 +139,12 @@ export default function Main() {
             ) : (
               <div>
                 <div
-                  className="text-lg rounded-xs px-10 py-2 text-primary border-white border cursor-pointer bg-white  mx-auto xl:mx-0"
+                  className="text-lg items-start gap-2 flex rounded-xs px-10 py-2 text-primary border-white border cursor-pointer bg-white  mx-auto xl:mx-0"
                   onClick={() => {
                     window.open('/certificate.png', '_blank')
                   }}
                 >
+                  <img src="/download.svg" className="mt-2"></img>
                   ดาวน์โหลดเกียรติบัตร
                 </div>
                 <div

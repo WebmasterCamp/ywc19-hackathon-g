@@ -12,8 +12,9 @@ export const ContractForm = ({
     <div className="bg-white px-8 pb-10 pt-5 rounded-sm">
       <p className="text-[28px] text-primary font-medium">ประเภทการจ้างงาน</p>
       <p className="text-[16px] mb-4">รูปแบบการจ้างงานที่คุณต้องการ</p>
-      {Object.keys(ContractOptions).map((option) => (
+      {Object.keys(ContractOptions).map((option, index) => (
         <RadioRow
+          key={index}
           option={option}
           selectedOption={selectedOption}
           handleOptionChange={() => handleOptionChange(ContractOptions[option])}

@@ -17,7 +17,7 @@ export const CourseCard = ({
 }) => {
   return (
     <Link href={'/course/' + id}>
-      <div className="min-w-[300px] max-w-[300px]  border-[0.5px] border-[#D6D6D6] rounded-xs">
+      <div className="min-w-[300px] max-w-[300px]  border-[0.5px] border-[#D6D6D6] rounded-xs hover:border-primary">
         <img src={img} className="w-[100%] "></img>
         <div className="p-4">
           <div className="text-lg">{name}</div>
