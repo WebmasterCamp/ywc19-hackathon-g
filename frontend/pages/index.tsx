@@ -43,7 +43,7 @@ export default function Main() {
   return (
     <div>
       <div className="flex items-center gap-5 mt-4 max-w-[1200px] mx-auto ">
-        <img src="/logo.svg" className="h-[28px] ml-3 md:ml-0"></img>
+        <img src="/logo.svg" className="h-[28px] ml-3 xl:ml-0"></img>
         <div className="flex-grow">
           <div className="relative bg-gray-100 w-full  py-4 px-4 rounded-xs h-[48px] hidden md:flex">
             <div className="mr-3 w-5 flex items-center">
@@ -60,7 +60,7 @@ export default function Main() {
           </div>
         </div>
         {user ? (
-          <div className="flex mr-3 md:mr-0 ">
+          <div className="flex mr-3 xl:mr-0 ">
             <div className="bg-[#D9D9D9]  rounded-[100%] w-[48px] h-[48px]"></div>
             <div className="ml-2">
               <div>K. {user?.username || '-'}</div>
@@ -72,7 +72,7 @@ export default function Main() {
         ) : (
           <button
             onClick={() => router.push('/login')}
-            className=" bg-primary rounded-xs text-white py-3 text-sm font-light px-4 mr-3 md:mr-0  "
+            className=" bg-primary rounded-xs text-white py-3 text-sm font-light px-4 mr-3 xl:mr-0  "
           >
             เข้าสู่ระบบ / ลงทะเบียน
           </button>
@@ -92,7 +92,7 @@ export default function Main() {
         <div className="text-lg text-center ">
           หางานและคอร์สที่ใช่สำหรับคุณ !
         </div>
-        <div className="flex items-center gap-2 mt-5 mx-3 md:mx-0">
+        <div className="flex items-center gap-2 mt-5 mx-3 xl:mx-0">
           <div className="bg-lightBlue rounded-xs w-[48px] h-[48px] flex items-center justify-center">
             <img src="/learning.svg" className="w-[32px] h-[32px]"></img>
           </div>
@@ -101,10 +101,10 @@ export default function Main() {
         {!course ? (
           <img
             src="/images/banner.svg"
-            className="mt-4 w-full object-contain  mx-3 md:mx-0"
+            className="mt-4 w-full object-contain  mx-3 xl:mx-0"
           ></img>
         ) : (
-          <div className="min-h-[187px]  rounded-xs flex items-center px-10 py-5 justify-between bg-[url('/banner-bg.svg')] bg-cover mt-4 flex-wrap gap-y-10  mx-3 md:mx-0">
+          <div className="min-h-[187px]  rounded-xs flex items-center px-10 py-5 justify-between bg-[url('/banner-bg.svg')] bg-cover mt-4 flex-wrap gap-y-10  mx-3 xl:mx-0">
             <div className="flex items-center ">
               <div className="text-white">
                 <div>คอร์สเรียนของคุณ</div>
@@ -129,12 +129,12 @@ export default function Main() {
                 </div>
               )}
             </div>
-            <div className="text-lg rounded-xs px-10 py-3 text-white border-white border cursor-pointer  mx-auto md:mx-0">
+            <div className="text-lg rounded-xs px-10 py-3 text-white border-white border cursor-pointer  mx-auto xl:mx-0">
               คลิกเพื่อดูรายละเอียด
             </div>
           </div>
         )}
-        <div className="flex items-center gap-2 mt-6  mx-3 md:mx-0">
+        <div className="flex items-center gap-2 mt-6  mx-3 xl:mx-0">
           <div className="bg-lightBlue rounded-xs w-[48px] h-[48px] flex items-center justify-center">
             <img src="/learning.svg" className="w-[32px] h-[32px]"></img>
           </div>

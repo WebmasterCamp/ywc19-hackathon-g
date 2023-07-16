@@ -1,5 +1,8 @@
+import LoadingScreen from '@/components/LoadingScreen'
 import TextInput from '@/components/TextInput'
+import { saveUserDetail } from '@/helper/user-helper'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 type UserRegistering = {
@@ -9,57 +12,74 @@ type UserRegistering = {
 }
 
 const Register = () => {
-  const registerHandle = async (event: any) => {}
+  const [isLoading, setIsLoading] = useState<Boolean>(false)
+
+  const router = useRouter()
+  const [username, setUsername] = useState<string>('')
+
+  const registerHandle = async (event: any) => {
+    setIsLoading(true)
+    saveUserDetail({ username })
+    setTimeout(async () => {
+      await router.push('/registering')
+      setIsLoading(false)
+    }, 1000)
+  }
 
   return (
-    <div className="h-screen grid grid-cols-2 bg-lightBlue">
-      <div className="bg-[#ACACAC] rounded-br-[5%] overflow-hidden relative">
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-10 z-10 text-white text-4xl font-semibold">
-          ADVANCELANE
-        </div>
-        <img
-          className="w-full h-screen object-cover"
-          src="/images/login.png"
-          alt="login-image"
-          height={500}
-          width={500}
-        />
-      </div>
-      <div className="bg-lightBlue rounded-tl-md flex items-center">
-        <div className="max-w-[500px] w-8/12 mx-auto">
-          <div className="text-3xl font-semibold">ยินดีต้อนรับสู่,</div>
-          <div className="text-5xl font-semibold text-primary -mt-1 mb-7">
-            ADVANCELANE
+    <div className="flex bg-lightBlue min-h-screen">
+      <LoadingScreen isLoading={isLoading} />
+
+      <img
+        className=" h-screen  object-cover rounded-br-[10%] hidden lg:block"
+        src="/auth.png"
+        alt="login-image"
+      />
+      <div className="bg-lightBlue rounded-tl-md flex items-center w-full px-4">
+        <div className=" mx-auto">
+          <div className="flex items-center mb-5 gap-4">
+            <div className="text-[28px] lg:text-[40px] font-semibold">
+              ยินดีต้อนรับสู่,
+            </div>
+            <img
+              src="/logo-primary.svg"
+              className="w-[100px] lg:w-[177px]"
+            ></img>
           </div>
-          <form onSubmit={registerHandle}>
-            <div>
-              <div className="mb-4">
-                <TextInput type="email" placeholder="อีเมล" />
-              </div>
-              <div className="mb-4">
-                <TextInput type="text" placeholder="ชื่อผู้ใช้" />
-              </div>
-              <div className="mb-4">
-                <TextInput type="password" placeholder="รหัสผ่าน" />
-              </div>
-              <div className="mb-4">
-                <TextInput type="password" placeholder="ยืนยันรหัสผ่าน" />
-              </div>
+          {/* <form onSubmit={registerHandle}> */}
+          <div>
+            <div className="mb-4">
+              <TextInput type="email" placeholder="อีเมล" />
             </div>
-            <div className="text-center text-sm mb-7">
-              <span className="text-gray-200">มีบัญชีแล้วใช่ไหม ?</span>
-              <Link href="/login">
-                <span className="underline ml-2 cursor-pointer">
-                  เข้าสู่ระบบ
-                </span>
-              </Link>
+            <div className="mb-4">
+              <TextInput
+                type="text"
+                placeholder="ชื่อผู้ใช้"
+                onChange={(val) => {
+                  setUsername(val)
+                }}
+              />
             </div>
-            <input
-              type="submit"
-              className="w-full bg-primary rounded-xs text-white py-3 text-sm font-light"
-              value="ลงทะเบียน"
-            />
-          </form>
+            <div className="mb-4">
+              <TextInput type="password" placeholder="รหัสผ่าน" />
+            </div>
+            <div className="mb-4">
+              <TextInput type="password" placeholder="ยืนยันรหัสผ่าน" />
+            </div>
+          </div>
+          <div className="text-center text-sm mb-7">
+            <span className="text-gray-200">มีบัญชีแล้วใช่ไหม ?</span>
+            <Link href="/login">
+              <span className="underline ml-2 cursor-pointer">เข้าสู่ระบบ</span>
+            </Link>
+          </div>
+          <input
+            type="submit"
+            className="w-full bg-primary rounded-xs text-white py-3 text-sm font-light"
+            value="ลงทะเบียน"
+            onClick={registerHandle}
+          />
+          {/* </form> */}
         </div>
       </div>
     </div>
