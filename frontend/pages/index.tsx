@@ -119,7 +119,7 @@ export default function Main() {
                 </div>
               ) : (
                 <div className="text-white text-4xl max-w-[390px]">
-                  ยินดีด้วย คุณเรียนคอร์ส รับเหมาก่อสร้างจบแล้ว !
+                  ยินดีด้วย คุณเรียนคอร์ส {course?.name} !
                 </div>
               )}
             </div>
