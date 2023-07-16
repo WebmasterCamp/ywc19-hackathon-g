@@ -60,12 +60,32 @@ export const contractMapping = {
   [ContractOptions.FREELANCE]: 'ฟรีแลนซ์',
 }
 
+export const monthMapping = {
+  1: 'มกราคม',
+  2: 'กุมภาพันธ์',
+  3: 'มีนาคม',
+  4: 'เมษายน',
+  5: 'พฤษภาคม',
+  6: 'มิถุนายน',
+  7: 'กรกฎาคม',
+  8: 'สิงหาคม',
+  9: 'กันยายน',
+  10: 'ตุลาคม',
+  11: 'พฤศจิกายน',
+  12: 'ธันวาคม',
+}
+
 export type Course = {
   id?: string
   name: string
   description: string
   location: string
-  dateTime: string
+  schedule: {
+    lessonNo: number
+    title: string
+    dateTime: string
+  }[]
+  duration: string
   certificate?: boolean
   test?: boolean
 }

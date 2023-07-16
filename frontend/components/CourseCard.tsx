@@ -2,7 +2,7 @@ import { Course } from '@/constant/enum'
 
 export const CourseCard = ({
   course: {
-    dateTime,
+    duration,
     description,
     location,
     name,
@@ -23,7 +23,7 @@ export const CourseCard = ({
           <div>{location}</div>
           <div className="bg-[#9D9D9D] w-[1px] h-[14px] mx-1"></div>
           <img src="/calendar.svg" className="w-[11.67px] h-[11.67px]"></img>
-          <div>{dateTime}</div>
+          <div>{duration}</div>
         </div>
         <div className="flex gap-2 mt-3">
           {certificate && (
