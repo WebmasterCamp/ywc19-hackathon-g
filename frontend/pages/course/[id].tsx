@@ -84,44 +84,45 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
           className={
             'cursor-pointer rounded-xs py-2.5 px-14 flex items-center whitespace-nowrap text-[18px] ' +
             (!user && 'opacity-60 pointer-events-none ') +
-            (course?.status === 'learn'
+            (!course?.completed && course?.id === matchedCourse.id
               ? ' bg-[#D0D0D0] text-[#A1A1A1] cursor-default'
               : ' bg-primary text-white')
           }
         >
-          {!course && (
-            <>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="19"
-                height="18"
-                className="mr-2"
-                viewBox="0 0 21 20"
-                fill="none"
-              >
-                <g clip-path="url(#clip0_250_651)">
-                  <path
-                    d="M18.5469 8.69998L18.5456 8.70002C18.286 8.70667 18.0331 8.75662 17.787 8.84972C17.5395 8.94338 17.3219 9.08399 17.1346 9.27129L17.1345 9.27131L10.1326 16.283L10.1228 16.2928L10.1195 16.3063L9.20149 19.9879L9.18135 20.0686L9.2621 20.0485L12.9437 19.1305L12.9572 19.1272L12.967 19.1173L19.9689 12.0959C19.969 12.0959 19.969 12.0959 19.969 12.0959C20.156 11.9088 20.2997 11.6916 20.3999 11.4446C20.4999 11.1979 20.55 10.9441 20.55 10.6836H20.5501L20.5499 10.6812C20.5367 10.4029 20.4836 10.1436 20.3904 9.90375C20.2966 9.66258 20.1558 9.45142 19.9683 9.27065C19.7815 9.09053 19.5679 8.95037 19.3278 8.85033C19.0869 8.74995 18.8264 8.7 18.5469 8.69998ZM19.0096 11.1463L19.0095 11.1463L12.2615 17.9041L11.0377 18.2123L11.3459 16.9884L18.094 10.2209L18.094 10.2209L18.0956 10.2192C18.1552 10.1536 18.2226 10.11 18.2979 10.0869C18.3774 10.0624 18.4601 10.0501 18.5461 10.05C18.7439 10.0563 18.9005 10.1178 19.0203 10.2316C19.1392 10.3446 19.2 10.4936 19.2 10.6836C19.2 10.8658 19.1368 11.019 19.0096 11.1463ZM6.75 8.8H6.8V8.75V7.5V7.45H6.75H5.5H5.45V7.5V8.75V8.8H5.5H6.75ZM15.5 8.8H15.55V8.75V7.5V7.45H15.5H8H7.95V7.5V8.75V8.8H8H15.5ZM5.5 11.2H5.45V11.25V12.5V12.55H5.5H6.75H6.8V12.5V11.25V11.2H6.75H5.5ZM6.75 5.05H6.8V5V3.75V3.7H6.75H5.5H5.45V3.75V5V5.05H5.5H6.75ZM15.5 5.05H15.55V5V3.75V3.7H15.5H8H7.95V3.75V5V5.05H8H15.5ZM8.57617 16.2H4.3V1.3H16.7V7.68555V7.77066L16.7743 7.72922C17.1664 7.51071 17.5773 7.3695 18.0074 7.30531L18.05 7.29895V7.25586V0V-0.05H18H3H2.95V0V17.5V17.55H3H8.26367H8.30271L8.31218 17.5121L8.62468 16.2621L8.64021 16.2H8.57617ZM8 11.2H7.95V11.25V12.5V12.55H8H11.7695H11.7902L11.8049 12.5354L13.0549 11.2854L13.1402 11.2H13.0195H8Z"
-                    fill="white"
-                    stroke="white"
-                    stroke-width="0.1"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_250_651">
-                    <rect
-                      width="20"
-                      height="20"
+          {!course ||
+            (course?.id !== matchedCourse.id && (
+              <>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="19"
+                  height="18"
+                  className="mr-2"
+                  viewBox="0 0 21 20"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0_250_651)">
+                    <path
+                      d="M18.5469 8.69998L18.5456 8.70002C18.286 8.70667 18.0331 8.75662 17.787 8.84972C17.5395 8.94338 17.3219 9.08399 17.1346 9.27129L17.1345 9.27131L10.1326 16.283L10.1228 16.2928L10.1195 16.3063L9.20149 19.9879L9.18135 20.0686L9.2621 20.0485L12.9437 19.1305L12.9572 19.1272L12.967 19.1173L19.9689 12.0959C19.969 12.0959 19.969 12.0959 19.969 12.0959C20.156 11.9088 20.2997 11.6916 20.3999 11.4446C20.4999 11.1979 20.55 10.9441 20.55 10.6836H20.5501L20.5499 10.6812C20.5367 10.4029 20.4836 10.1436 20.3904 9.90375C20.2966 9.66258 20.1558 9.45142 19.9683 9.27065C19.7815 9.09053 19.5679 8.95037 19.3278 8.85033C19.0869 8.74995 18.8264 8.7 18.5469 8.69998ZM19.0096 11.1463L19.0095 11.1463L12.2615 17.9041L11.0377 18.2123L11.3459 16.9884L18.094 10.2209L18.094 10.2209L18.0956 10.2192C18.1552 10.1536 18.2226 10.11 18.2979 10.0869C18.3774 10.0624 18.4601 10.0501 18.5461 10.05C18.7439 10.0563 18.9005 10.1178 19.0203 10.2316C19.1392 10.3446 19.2 10.4936 19.2 10.6836C19.2 10.8658 19.1368 11.019 19.0096 11.1463ZM6.75 8.8H6.8V8.75V7.5V7.45H6.75H5.5H5.45V7.5V8.75V8.8H5.5H6.75ZM15.5 8.8H15.55V8.75V7.5V7.45H15.5H8H7.95V7.5V8.75V8.8H8H15.5ZM5.5 11.2H5.45V11.25V12.5V12.55H5.5H6.75H6.8V12.5V11.25V11.2H6.75H5.5ZM6.75 5.05H6.8V5V3.75V3.7H6.75H5.5H5.45V3.75V5V5.05H5.5H6.75ZM15.5 5.05H15.55V5V3.75V3.7H15.5H8H7.95V3.75V5V5.05H8H15.5ZM8.57617 16.2H4.3V1.3H16.7V7.68555V7.77066L16.7743 7.72922C17.1664 7.51071 17.5773 7.3695 18.0074 7.30531L18.05 7.29895V7.25586V0V-0.05H18H3H2.95V0V17.5V17.55H3H8.26367H8.30271L8.31218 17.5121L8.62468 16.2621L8.64021 16.2H8.57617ZM8 11.2H7.95V11.25V12.5V12.55H8H11.7695H11.7902L11.8049 12.5354L13.0549 11.2854L13.1402 11.2H13.0195H8Z"
                       fill="white"
-                      transform="translate(0.5)"
+                      stroke="white"
+                      stroke-width="0.1"
                     />
-                  </clipPath>
-                </defs>
-              </svg>
-              สมัครเรียน
-            </>
-          )}
-          {/* {course?.status === 'learn' && (
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_250_651">
+                      <rect
+                        width="20"
+                        height="20"
+                        fill="white"
+                        transform="translate(0.5)"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+                สมัครเรียน
+              </>
+            ))}
+          {!course?.completed && course?.id === matchedCourse.id && (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +138,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
               </svg>
               สมัครเรียนเรียบร้อยแล้ว
             </>
-          )} */}
+          )}
           {course?.completed && course?.id === matchedCourse.id && (
             <>
               <svg
@@ -246,7 +247,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
 
             return (
               <div
-                className="flex bg-lightBlue py-4 px-4 rounded-[8px] items-center"
+                className="flex relative bg-lightBlue py-4 px-4 rounded-[8px] items-center mb-4 pr-14"
                 key={lesson.lessonNo}
               >
                 <div className="border-r-2 pr-5 pl-2 py-1 text-center border-r-[#DCE0E3] mr-5">
@@ -255,10 +256,33 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
                     {monthMapping[parseInt(DayMonth[0])]}
                   </div>
                 </div>
-                <div className="text-[28px] text-primary mr-4">
+                <div className="text-[28px] text-primary mr-5 whitespace-nowrap">
                   สัปดาห์ที่ {lesson.lessonNo}
                 </div>
-                <div className="text-[24px]"> {lesson.title}</div>
+                <div className="text-[20px] pr-5"> {lesson.title}</div>
+                {course?.completed && course?.id === matchedCourse.id && (
+                  <div className="absolute right-5 top-1/2 -translate-y-1/2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="34"
+                      height="34"
+                      viewBox="0 0 36 36"
+                      fill="none"
+                    >
+                      <g clip-path="url(#clip0_250_707)">
+                        <path
+                          d="M18 0C8.1 0 0 8.1 0 18C0 27.9 8.1 36 18 36C27.9 36 36 27.9 36 18C36 8.1 27.9 0 18 0ZM14.4 27L5.4 18L7.92 15.48L14.4 21.96L28.08 8.28L30.6 10.8L14.4 27Z"
+                          fill="#00AB54"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_250_707">
+                          <rect width="36" height="36" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
+                )}
               </div>
             )
           })}
