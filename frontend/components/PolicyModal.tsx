@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 const PolicyModal = ({
-  courseId,
+  course,
   isOpen,
   setIsOpen,
   mainTitle,
@@ -11,7 +11,7 @@ const PolicyModal = ({
   description,
   policies,
 }: {
-  courseId: string
+  course: any
   isOpen: boolean
   setIsOpen: any
   mainTitle: string
@@ -24,12 +24,7 @@ const PolicyModal = ({
   const router = useRouter()
 
   const courseLearnHandle = () => {
-    const data = {
-      courseId: courseId,
-      status: 'learn',
-      progress: 0,
-    }
-    saveCourse(data)
+    saveCourse(course)
     setIsOpen(false)
     router.push('/')
   }
