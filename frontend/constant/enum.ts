@@ -82,7 +82,7 @@ export type Course = {
   name: string
   description: string
   location: string
-  schedule: {
+  lesson: {
     lessonNo: number
     title: string
     dateTime: string
