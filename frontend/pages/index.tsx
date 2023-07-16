@@ -105,7 +105,7 @@ export default function Main() {
                 <div className="text-4xl">{course?.name}</div>
               </div>
               <div className="w-[1px] h-[120px] border-[0.5px] border-white mx-7"></div>
-              {!course?.complted ? (
+              {!course?.completed ? (
                 <div className="text-white">
                   <div>เรียนไปแล้ว</div>
                   <div className="flex items-center gap-4">
@@ -123,9 +123,35 @@ export default function Main() {
                 </div>
               )}
             </div>
-            <div className="text-lg rounded-xs px-10 py-3 text-white border-white border cursor-pointer  mx-auto xl:mx-0">
-              คลิกเพื่อดูรายละเอียด
-            </div>
+            {!course?.completed ? (
+              <div
+                className="text-lg rounded-xs px-10 py-3 text-white border-white border cursor-pointer  mx-auto xl:mx-0"
+                onClick={() => {
+                  router.push(`/course/${course?.id}`)
+                }}
+              >
+                คลิกเพื่อดูรายละเอียด
+              </div>
+            ) : (
+              <div>
+                <div
+                  className="text-lg rounded-xs px-10 py-2 text-primary border-white border cursor-pointer bg-white  mx-auto xl:mx-0"
+                  onClick={() => {
+                    window.open('/certificate.png', '_blank')
+                  }}
+                >
+                  ดาวน์โหลดเกียรติบัตร
+                </div>
+                <div
+                  className="text-lg mt-2 rounded-xs px-10 py-2 text-white border-white border cursor-pointer  mx-auto xl:mx-0"
+                  onClick={() => {
+                    router.push(`/course/${course?.id}`)
+                  }}
+                >
+                  คลิกเพื่อดูรายละเอียด
+                </div>
+              </div>
+            )}
           </div>
         )}
         <div className="flex items-center gap-2 mt-6  mx-3 xl:mx-0">
