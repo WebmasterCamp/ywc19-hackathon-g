@@ -1,7 +1,7 @@
 import PolicyModal from '@/components/PolicyModal'
 import { courses } from '@/constant/courses'
 import { Course, monthMapping } from '@/constant/enum'
-import { getUserDetail } from '@/helper/user-helper'
+import { getLatestCourse, getUserDetail } from '@/helper/user-helper'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -9,6 +9,7 @@ import { useState } from 'react'
 const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const user = getUserDetail()
+  const course = getLatestCourse()
 
   const jobRegistrationPolicy = {
     mainTitle: 'แบบยินยอมการยอมรับเงื่อนไขการสมัคร',
@@ -27,6 +28,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
   return (
     <div className="max-w-[1200px] mx-auto mt-10 mb-14">
       <PolicyModal
+        courseId={matchedCourse.id}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         mainTitle={jobRegistrationPolicy.mainTitle}
@@ -79,38 +81,94 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
         <div
           onClick={() => setIsOpen(true)}
           className={
-            'bg-primary cursor-pointer rounded-xs py-2.5 px-14 flex items-center text-white whitespace-nowrap text-[18px] ' +
-            (!user && 'opacity-60 pointer-events-none')
+            'cursor-pointer rounded-xs py-2.5 px-14 flex items-center whitespace-nowrap text-[18px] ' +
+            (!user && 'opacity-60 pointer-events-none ') +
+            (course?.status === 'learn'
+              ? ' bg-[#D0D0D0] text-[#A1A1A1] cursor-default'
+              : ' bg-primary text-white')
           }
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="19"
-            height="18"
-            className="mr-2"
-            viewBox="0 0 21 20"
-            fill="none"
-          >
-            <g clip-path="url(#clip0_250_651)">
-              <path
-                d="M18.5469 8.69998L18.5456 8.70002C18.286 8.70667 18.0331 8.75662 17.787 8.84972C17.5395 8.94338 17.3219 9.08399 17.1346 9.27129L17.1345 9.27131L10.1326 16.283L10.1228 16.2928L10.1195 16.3063L9.20149 19.9879L9.18135 20.0686L9.2621 20.0485L12.9437 19.1305L12.9572 19.1272L12.967 19.1173L19.9689 12.0959C19.969 12.0959 19.969 12.0959 19.969 12.0959C20.156 11.9088 20.2997 11.6916 20.3999 11.4446C20.4999 11.1979 20.55 10.9441 20.55 10.6836H20.5501L20.5499 10.6812C20.5367 10.4029 20.4836 10.1436 20.3904 9.90375C20.2966 9.66258 20.1558 9.45142 19.9683 9.27065C19.7815 9.09053 19.5679 8.95037 19.3278 8.85033C19.0869 8.74995 18.8264 8.7 18.5469 8.69998ZM19.0096 11.1463L19.0095 11.1463L12.2615 17.9041L11.0377 18.2123L11.3459 16.9884L18.094 10.2209L18.094 10.2209L18.0956 10.2192C18.1552 10.1536 18.2226 10.11 18.2979 10.0869C18.3774 10.0624 18.4601 10.0501 18.5461 10.05C18.7439 10.0563 18.9005 10.1178 19.0203 10.2316C19.1392 10.3446 19.2 10.4936 19.2 10.6836C19.2 10.8658 19.1368 11.019 19.0096 11.1463ZM6.75 8.8H6.8V8.75V7.5V7.45H6.75H5.5H5.45V7.5V8.75V8.8H5.5H6.75ZM15.5 8.8H15.55V8.75V7.5V7.45H15.5H8H7.95V7.5V8.75V8.8H8H15.5ZM5.5 11.2H5.45V11.25V12.5V12.55H5.5H6.75H6.8V12.5V11.25V11.2H6.75H5.5ZM6.75 5.05H6.8V5V3.75V3.7H6.75H5.5H5.45V3.75V5V5.05H5.5H6.75ZM15.5 5.05H15.55V5V3.75V3.7H15.5H8H7.95V3.75V5V5.05H8H15.5ZM8.57617 16.2H4.3V1.3H16.7V7.68555V7.77066L16.7743 7.72922C17.1664 7.51071 17.5773 7.3695 18.0074 7.30531L18.05 7.29895V7.25586V0V-0.05H18H3H2.95V0V17.5V17.55H3H8.26367H8.30271L8.31218 17.5121L8.62468 16.2621L8.64021 16.2H8.57617ZM8 11.2H7.95V11.25V12.5V12.55H8H11.7695H11.7902L11.8049 12.5354L13.0549 11.2854L13.1402 11.2H13.0195H8Z"
-                fill="white"
-                stroke="white"
-                stroke-width="0.1"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_250_651">
-                <rect
-                  width="20"
-                  height="20"
-                  fill="white"
-                  transform="translate(0.5)"
+          {!course?.status && (
+            <>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="19"
+                height="18"
+                className="mr-2"
+                viewBox="0 0 21 20"
+                fill="none"
+              >
+                <g clip-path="url(#clip0_250_651)">
+                  <path
+                    d="M18.5469 8.69998L18.5456 8.70002C18.286 8.70667 18.0331 8.75662 17.787 8.84972C17.5395 8.94338 17.3219 9.08399 17.1346 9.27129L17.1345 9.27131L10.1326 16.283L10.1228 16.2928L10.1195 16.3063L9.20149 19.9879L9.18135 20.0686L9.2621 20.0485L12.9437 19.1305L12.9572 19.1272L12.967 19.1173L19.9689 12.0959C19.969 12.0959 19.969 12.0959 19.969 12.0959C20.156 11.9088 20.2997 11.6916 20.3999 11.4446C20.4999 11.1979 20.55 10.9441 20.55 10.6836H20.5501L20.5499 10.6812C20.5367 10.4029 20.4836 10.1436 20.3904 9.90375C20.2966 9.66258 20.1558 9.45142 19.9683 9.27065C19.7815 9.09053 19.5679 8.95037 19.3278 8.85033C19.0869 8.74995 18.8264 8.7 18.5469 8.69998ZM19.0096 11.1463L19.0095 11.1463L12.2615 17.9041L11.0377 18.2123L11.3459 16.9884L18.094 10.2209L18.094 10.2209L18.0956 10.2192C18.1552 10.1536 18.2226 10.11 18.2979 10.0869C18.3774 10.0624 18.4601 10.0501 18.5461 10.05C18.7439 10.0563 18.9005 10.1178 19.0203 10.2316C19.1392 10.3446 19.2 10.4936 19.2 10.6836C19.2 10.8658 19.1368 11.019 19.0096 11.1463ZM6.75 8.8H6.8V8.75V7.5V7.45H6.75H5.5H5.45V7.5V8.75V8.8H5.5H6.75ZM15.5 8.8H15.55V8.75V7.5V7.45H15.5H8H7.95V7.5V8.75V8.8H8H15.5ZM5.5 11.2H5.45V11.25V12.5V12.55H5.5H6.75H6.8V12.5V11.25V11.2H6.75H5.5ZM6.75 5.05H6.8V5V3.75V3.7H6.75H5.5H5.45V3.75V5V5.05H5.5H6.75ZM15.5 5.05H15.55V5V3.75V3.7H15.5H8H7.95V3.75V5V5.05H8H15.5ZM8.57617 16.2H4.3V1.3H16.7V7.68555V7.77066L16.7743 7.72922C17.1664 7.51071 17.5773 7.3695 18.0074 7.30531L18.05 7.29895V7.25586V0V-0.05H18H3H2.95V0V17.5V17.55H3H8.26367H8.30271L8.31218 17.5121L8.62468 16.2621L8.64021 16.2H8.57617ZM8 11.2H7.95V11.25V12.5V12.55H8H11.7695H11.7902L11.8049 12.5354L13.0549 11.2854L13.1402 11.2H13.0195H8Z"
+                    fill="white"
+                    stroke="white"
+                    stroke-width="0.1"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_250_651">
+                    <rect
+                      width="20"
+                      height="20"
+                      fill="white"
+                      transform="translate(0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              สมัครเรียน
+            </>
+          )}
+          {course?.status === 'learn' && (
+            <>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M9.54961 17.9996L3.84961 12.2996L5.27461 10.8746L9.54961 15.1496L18.7246 5.97461L20.1496 7.39961L9.54961 17.9996Z"
+                  fill="#A1A1A1"
                 />
-              </clipPath>
-            </defs>
-          </svg>
-          สมัครเรียน
+              </svg>
+              สมัครเรียนเรียบร้อยแล้ว
+            </>
+          )}
+          {course?.status === 'finish' && (
+            <>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="19"
+                height="18"
+                className="mr-2"
+                viewBox="0 0 21 20"
+                fill="none"
+              >
+                <g clip-path="url(#clip0_250_651)">
+                  <path
+                    d="M18.5469 8.69998L18.5456 8.70002C18.286 8.70667 18.0331 8.75662 17.787 8.84972C17.5395 8.94338 17.3219 9.08399 17.1346 9.27129L17.1345 9.27131L10.1326 16.283L10.1228 16.2928L10.1195 16.3063L9.20149 19.9879L9.18135 20.0686L9.2621 20.0485L12.9437 19.1305L12.9572 19.1272L12.967 19.1173L19.9689 12.0959C19.969 12.0959 19.969 12.0959 19.969 12.0959C20.156 11.9088 20.2997 11.6916 20.3999 11.4446C20.4999 11.1979 20.55 10.9441 20.55 10.6836H20.5501L20.5499 10.6812C20.5367 10.4029 20.4836 10.1436 20.3904 9.90375C20.2966 9.66258 20.1558 9.45142 19.9683 9.27065C19.7815 9.09053 19.5679 8.95037 19.3278 8.85033C19.0869 8.74995 18.8264 8.7 18.5469 8.69998ZM19.0096 11.1463L19.0095 11.1463L12.2615 17.9041L11.0377 18.2123L11.3459 16.9884L18.094 10.2209L18.094 10.2209L18.0956 10.2192C18.1552 10.1536 18.2226 10.11 18.2979 10.0869C18.3774 10.0624 18.4601 10.0501 18.5461 10.05C18.7439 10.0563 18.9005 10.1178 19.0203 10.2316C19.1392 10.3446 19.2 10.4936 19.2 10.6836C19.2 10.8658 19.1368 11.019 19.0096 11.1463ZM6.75 8.8H6.8V8.75V7.5V7.45H6.75H5.5H5.45V7.5V8.75V8.8H5.5H6.75ZM15.5 8.8H15.55V8.75V7.5V7.45H15.5H8H7.95V7.5V8.75V8.8H8H15.5ZM5.5 11.2H5.45V11.25V12.5V12.55H5.5H6.75H6.8V12.5V11.25V11.2H6.75H5.5ZM6.75 5.05H6.8V5V3.75V3.7H6.75H5.5H5.45V3.75V5V5.05H5.5H6.75ZM15.5 5.05H15.55V5V3.75V3.7H15.5H8H7.95V3.75V5V5.05H8H15.5ZM8.57617 16.2H4.3V1.3H16.7V7.68555V7.77066L16.7743 7.72922C17.1664 7.51071 17.5773 7.3695 18.0074 7.30531L18.05 7.29895V7.25586V0V-0.05H18H3H2.95V0V17.5V17.55H3H8.26367H8.30271L8.31218 17.5121L8.62468 16.2621L8.64021 16.2H8.57617ZM8 11.2H7.95V11.25V12.5V12.55H8H11.7695H11.7902L11.8049 12.5354L13.0549 11.2854L13.1402 11.2H13.0195H8Z"
+                    fill="white"
+                    stroke="white"
+                    stroke-width="0.1"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_250_651">
+                    <rect
+                      width="20"
+                      height="20"
+                      fill="white"
+                      transform="translate(0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              ดาวน์โหลดเกียรติบัตร
+            </>
+          )}
         </div>
       </div>
       <div className="text-[24px] mb-1">{matchedCourse?.description}</div>
@@ -172,7 +230,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
         <div className="w-5/12 h-[608px] mr-[26px]">
           <img
             className="h-full w-full object-cover object-center"
-            src={`/course/course-${matchedCourse.id}.png`}
+            src={`/course/course-${matchedCourse?.id}.png`}
           />
         </div>
         <div className="w-7/12">

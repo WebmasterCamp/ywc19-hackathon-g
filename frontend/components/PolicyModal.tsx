@@ -1,6 +1,9 @@
+import { saveCourse } from '@/helper/user-helper'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 const PolicyModal = ({
+  courseId,
   isOpen,
   setIsOpen,
   mainTitle,
@@ -8,6 +11,7 @@ const PolicyModal = ({
   description,
   policies,
 }: {
+  courseId: string
   isOpen: boolean
   setIsOpen: any
   mainTitle: string
@@ -16,6 +20,20 @@ const PolicyModal = ({
   policies: string[]
 }) => {
   const [policyChecked, setPolicyChecked] = useState<boolean>(false)
+
+  const router = useRouter()
+
+  const courseLearnHandle = () => {
+    const data = {
+      courseId: courseId,
+      status: 'learn',
+      progress: 0,
+    }
+    saveCourse(data)
+    setIsOpen(false)
+    router.push('/')
+  }
+
   return (
     <div
       className={
@@ -77,6 +95,7 @@ const PolicyModal = ({
             </label>
           </div>
           <div
+            onClick={courseLearnHandle}
             className={
               'w-[752px] text-center rounded-[8px] cursor-pointer py-2 text-[20px] text-white bg-primary mx-auto mb-6 ' +
               (!policyChecked && 'opacity-60 pointer-events-none')
