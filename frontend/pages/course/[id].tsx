@@ -1,38 +1,66 @@
+import PolicyModal from '@/components/PolicyModal'
 import { courses } from '@/constant/courses'
-import { Course } from '@/constant/enum'
+import { Course, monthMapping } from '@/constant/enum'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Link from 'next/link'
+import { useState } from 'react'
 
 const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
-  console.log(matchedCourse)
+  const [isOpen, setIsOpen] = useState<boolean>(true)
+
+  const jobRegistrationPolicy = {
+    mainTitle: 'แบบยินยอมการยอมรับเงื่อนไขการสมัคร',
+    miniTitle:
+      '*กรุณาอ่านเงื่อนไขและรายละเอียดการเข้าร่วมเรียนรู้บนแพลตฟอร์มของมือโปรโดยละเอียด',
+    description:
+      '‘มือโปร’ เป็นแพลตฟอร์มการเรียนรู้ที่เปิดโอกาสให้ทุกคนได้เข้าถึงระบบการศึกษาที่มุ่งเน้นให้ทุกคนสามารถนำองค์ความรู้ไปประยุกต์ใช้ สร้างงานสร้างอาชีพได้ ทั้งนี้องค์กรของเราก็มีการขอความร่วมมือกับหน่วยงานทั้งภาครัฐและเอกชนในการมอบโอกาสในการจ้างงาน โดยมีรายละเอียดและเงื่อนไขดังนี้',
+    policy: [
+      'การเรียนรู้ของเราจะเน้นการเรียนรู้ในเชิงปฏิบัติ โดยค่าใช้จ่ายต่างๆ ที่เกี่ยวเนื่องกับกิจกรรมทางมือโปรจะเป็นผู้ออกค่าใช้จ่ายทั้งหมด (โดยจะไม่รวมไปถึงค่าใช้จ่ายส่วนตัวอื่นๆ ของผู้เข้าร่วมกิจกรรม)',
+      '‘มือโปร’ มีสิทธ์ส่งมอบหรือใช้ข้อมูลของท่าน (ผลการเรียน, อายุ และข้อมูลอื่นๆ) ในการหางานและดำเนินการได้ทุกเมื่อ (ทั้งนี้เพื่อประโยชน์สูงสุดของท่าน เราจะใช้ ข้อมูลในการสร้างอาชีพเท่านั้น)',
+      'เพื่อประสิทธิภาพสูงสุดในการเรียนกับ ‘มือโปร’ ท่านจะต้อง ‘ฝึกอาชีพ’ ในหน่วยงานที่ ‘มือโปร’ จัดหาให้อย่างน้อย 1 เดือน',
+      'แต่ได้รับค่าตอบแทนตามอัตราที่กำหนด ทั้งนี้การ ‘ฝึกอาชีพ’ เป็นการเรียนรู้นอกหลักสูตรที่จะขยายโอกาสในสายงานให้แก่ท่าน',
+    ],
+  }
+
   return (
-    <div className="max-w-[1200px] mx-auto mt-10">
-      <div className="text-[#9D9D9D] flex items-center text-lg mb-5">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="mr-2"
-          width="15"
-          height="15"
-          viewBox="0 0 18 18"
-          fill="none"
-        >
-          <path
-            d="M7.47342 9.17678L14.1966 15.9L12.4502 17.6464L3.80375 9L12.4502 0.353554L14.1966 2.1L7.47342 8.82322L7.29664 9L7.47342 9.17678Z"
-            fill="#9D9D9D"
-            stroke="white"
-            stroke-width="0.5"
-          />
-        </svg>
-        กลับหน้าหลัก
-      </div>
+    <div className="max-w-[1200px] mx-auto mt-10 mb-14">
+      <PolicyModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        mainTitle={jobRegistrationPolicy.mainTitle}
+        miniTitle={jobRegistrationPolicy.miniTitle}
+        description={jobRegistrationPolicy.description}
+        policies={jobRegistrationPolicy.policy}
+      />
+      <Link href="/">
+        <div className="hover:-translate-x-2 duration-300 transition ease-in-out cursor-pointer text-[#9D9D9D] flex items-center text-lg mb-5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="mr-2 cursor-pointer"
+            width="15"
+            height="15"
+            viewBox="0 0 18 18"
+            fill="none"
+          >
+            <path
+              d="M7.47342 9.17678L14.1966 15.9L12.4502 17.6464L3.80375 9L12.4502 0.353554L14.1966 2.1L7.47342 8.82322L7.29664 9L7.47342 9.17678Z"
+              fill="#9D9D9D"
+              stroke="white"
+              stroke-width="0.5"
+            />
+          </svg>
+          กลับหน้าหลัก
+        </div>
+      </Link>
       <div className="flex items-center">
         <div className="flex items-center w-full">
-          <div className="text-3xl font-semibold mr-4">
+          <div className="text-[40px] font-semibold mr-4">
             {matchedCourse?.name}
           </div>
           {matchedCourse?.certificate && (
             <div className="flex bg-lightBlueTp px-2 py-1 rounded-md items-center mr-2 h-max">
               <img src="/primary-check.svg"></img>
-              <div className="text-xs ml-1 whitespace-nowrap text-primary font-medium">
+              <div className="text-[16px] ml-1 whitespace-nowrap text-primary font-medium">
                 ได้รับเกียรติบัตร
               </div>
             </div>
@@ -40,13 +68,16 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
           {matchedCourse?.test && (
             <div className="flex bg-[#caf5dc] px-2 py-1 rounded-md items-center h-max">
               <img src="/green-check.svg"></img>
-              <div className="text-xs text-[#00AB54] ml-1 whitespace-nowrap">
+              <div className="text-[16px] text-[#00AB54] ml-1 whitespace-nowrap">
                 มีสอบ
               </div>
             </div>
           )}
         </div>
-        <div className="bg-primary rounded-xs py-2.5 px-14 flex items-center text-white whitespace-nowrap text-xs">
+        <div
+          onClick={() => setIsOpen(true)}
+          className="bg-primary cursor-pointer rounded-xs py-2.5 px-14 flex items-center text-white whitespace-nowrap text-[18px]"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="19"
@@ -77,8 +108,8 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
           สมัครเรียน
         </div>
       </div>
-      <div className="text-lg mb-1">{matchedCourse?.description}</div>
-      <div className="flex items-center text-sm">
+      <div className="text-[24px] mb-1">{matchedCourse?.description}</div>
+      <div className="flex items-center text-[20px]">
         <div className="flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -132,9 +163,42 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
           <span className="ml-1">{matchedCourse?.duration}</span>
         </div>
       </div>
-      <div>
-        <div></div>
-        <div></div>
+      <div className="flex mt-8">
+        <div className="w-5/12 h-[608px] mr-[26px]">
+          <img
+            className="h-full w-full object-cover object-center"
+            src={`/course/course-${matchedCourse.id}.png`}
+          />
+        </div>
+        <div className="w-7/12">
+          <div className="flex items-center text-[#9D9D9D] -mt-3 mb-5">
+            <div className="whitespace-nowrap text-[24px] mr-5">ตารางเรียน</div>
+            <hr className="w-full -mb-1 bg-[#D1D6DB]" />
+          </div>
+          {matchedCourse?.lesson.map((lesson) => {
+            const DayMonth: string[] = lesson.dateTime
+              .split(/[\s,-]+/)
+              .filter((item, index) => index <= 2 && index >= 1)
+
+            return (
+              <div
+                className="flex bg-lightBlue py-4 px-4 rounded-[8px] items-center"
+                key={lesson.lessonNo}
+              >
+                <div className="border-r-2 pr-5 pl-2 py-1 text-center border-r-[#DCE0E3] mr-5">
+                  <div className="text-[36px] -mt-2">{DayMonth[1]}</div>
+                  <div className="text-[18px] -mt-3">
+                    {monthMapping[parseInt(DayMonth[0])]}
+                  </div>
+                </div>
+                <div className="text-[28px] text-primary mr-4">
+                  สัปดาห์ที่ {lesson.lessonNo}
+                </div>
+                <div className="text-[24px]"> {lesson.title}</div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )
