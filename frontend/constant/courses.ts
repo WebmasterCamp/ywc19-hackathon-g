@@ -16,7 +16,7 @@ export const courses: Course[] = [
     duration: '5 อาทิตย์ (30 ชั่วโมง)',
     certificate: true,
     test: true,
-    img: '/course/course-1.png',
+    img: '/images/course-1.png',
   },
   {
     id: '2',
@@ -27,7 +27,7 @@ export const courses: Course[] = [
     duration: '2 อาทิตย์ (6 ชั่วโมง)',
     certificate: true,
     test: true,
-    img: '/course/course-2.png',
+    img: '/images/course-2.png',
   },
   {
     id: '3',
@@ -38,7 +38,7 @@ export const courses: Course[] = [
     duration: '2 อาทิตย์ (6 ชั่วโมง)',
     certificate: true,
     test: true,
-    img: '/course/course-3.png',
+    img: '/images/course-3.png',
   },
   {
     id: '4',
@@ -48,7 +48,7 @@ export const courses: Course[] = [
     lesson: [],
     duration: '1 วัน (3 ชั่วโมง)',
     certificate: true,
-    img: '/course/course-4.png',
+    img: '/images/course-4.png',
   },
   {
     id: '5',
@@ -59,7 +59,7 @@ export const courses: Course[] = [
     duration: '2 วัน (3 ชั่วโมง)',
     certificate: true,
     test: true,
-    img: '/course/course-5.png',
+    img: '/images/course-5.png',
   },
   {
     id: '6',
@@ -69,6 +69,6 @@ export const courses: Course[] = [
     location: 'กรุงเทพมหานคร',
     duration: '1 วัน (3 ชั่วโมง)',
     certificate: true,
-    img: '/course/course-6.png',
+    img: '/images/course-6.png',
   },
 ]
