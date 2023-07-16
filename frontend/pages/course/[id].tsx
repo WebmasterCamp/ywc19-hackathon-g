@@ -10,6 +10,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const user = getUserDetail()
   const course = getLatestCourse()
+  console.log(course)
 
   const jobRegistrationPolicy = {
     mainTitle: 'แบบยินยอมการยอมรับเงื่อนไขการสมัคร',
@@ -88,7 +89,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
               : ' bg-primary text-white')
           }
         >
-          {!course?.status && (
+          {!course && (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +121,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
               สมัครเรียน
             </>
           )}
-          {course?.status === 'learn' && (
+          {/* {course?.status === 'learn' && (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -136,8 +137,8 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
               </svg>
               สมัครเรียนเรียบร้อยแล้ว
             </>
-          )}
-          {course?.status === 'finish' && (
+          )} */}
+          {course?.completed && course?.id === matchedCourse.id && (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
