@@ -42,3 +42,20 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 }
+
+ol {
+  counter-reset: foo;
+  display: table;
+  border-spacing: 5px;
+}
+
+ol > li {
+  counter-increment: foo;
+  display: table-row;
+}
+
+ol > li::before {
+  content: counter(foo) '.';
+  display: table-cell; /* aha! */
+  text-align: right;
+}
