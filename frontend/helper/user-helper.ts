@@ -1,6 +1,8 @@
 export const getUserDetail = () => {
   if (typeof window === 'undefined') return null
   const user = window?.localStorage?.getItem('user')
+  console.log('userasdas', user)
+
   return user ? JSON.parse(user) : null
 }
 

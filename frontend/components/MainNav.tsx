@@ -6,9 +6,9 @@ const MainNav = () => {
   const router = useRouter()
   return (
     <div className="flex items-center gap-5 mt-4 max-w-[1200px] mx-auto ">
-      <img src="/logo.svg" className="h-[28px]"></img>
+      <img src="/logo.svg" className="h-[28px] ml-3 md:ml-0"></img>
       <div className="flex-grow">
-        <div className="relative bg-gray-100 w-full flex py-4 px-4 rounded-xs h-[48px]">
+        {/* <div className="relative bg-gray-100 w-full flex py-4 px-4 rounded-xs h-[48px]">
           <div className="mr-3 w-5 flex items-center">
             <img src="/search.svg" alt="icons" />
           </div>
@@ -19,13 +19,13 @@ const MainNav = () => {
               placeholder={'ค้นหา'}
             />
           </div>
-        </div>
+        </div> */}
       </div>
       {user ? (
         <div className="flex">
           <div className="bg-[#D9D9D9]  rounded-[100%] w-[48px] h-[48px]"></div>
           <div className="ml-2">
-            <div>K. {getUserDetail()?.username || '-'}</div>
+            <div>K. {user?.username || '-'}</div>
             <div className="text-sm text-[#9D9D9D]" style={{ marginTop: -2 }}>
               090-xxx-xxx
             </div>
@@ -34,7 +34,7 @@ const MainNav = () => {
       ) : (
         <button
           onClick={() => router.push('/login')}
-          className=" bg-primary rounded-xs text-white py-3 text-sm font-light px-4"
+          className=" bg-primary rounded-xs text-white py-3 text-sm font-light px-4 mr-3 md:mr-0"
         >
           เข้าสู่ระบบ / ลงทะเบียน
         </button>

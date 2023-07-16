@@ -21,20 +21,26 @@ export default function Main() {
     test: true,
     img: '/images/course-1.png',
   }
+  const user = getUserDetail()
+  console.log('user', user)
 
   return (
     <div>
       <div className="max-w-[1200px] mx-auto">
         <div className="text-[40px] font-semibold mt-4 text-center">
-          สวัสดี,{' '}
-          <span className="text-primary">
-            คุณ{getUserDetail()?.username || '-'}
-          </span>
+          {user ? (
+            <>
+              สวัสดี,{' '}
+              <span className="text-primary">คุณ{user?.username || '-'}</span>{' '}
+            </>
+          ) : (
+            <>ยินดีต้อนรับสู่มือโปร</>
+          )}
         </div>
         <div className="text-lg text-center ">
           หางานและคอร์สที่ใช่สำหรับคุณ !
         </div>
-        <div className="flex items-center gap-2 mt-5">
+        <div className="flex items-center gap-2 mt-5 mx-3 md:mx-0">
           <div className="bg-lightBlue rounded-xs w-[48px] h-[48px] flex items-center justify-center">
             <img src="/learning.svg" className="w-[32px] h-[32px]"></img>
           </div>
@@ -43,11 +49,11 @@ export default function Main() {
         {!course ? (
           <img
             src="/images/banner.svg"
-            className="mt-4 w-full object-contain"
+            className="mt-4 w-full object-contain  mx-3 md:mx-0"
           ></img>
         ) : (
-          <div className="h-[187px]  rounded-xs flex items-center px-10 py-5 justify-between bg-[url('/banner-bg.svg')] bg-cover mt-4">
-            <div className="flex items-center">
+          <div className="min-h-[187px]  rounded-xs flex items-center px-10 py-5 justify-between bg-[url('/banner-bg.svg')] bg-cover mt-4 flex-wrap gap-y-10  mx-3 md:mx-0">
+            <div className="flex items-center ">
               <div className="text-white">
                 <div>คอร์สเรียนของคุณ</div>
                 <div className="text-4xl">{course?.name}</div>
@@ -60,7 +66,7 @@ export default function Main() {
                     <div className="text-4xl">
                       0 ชั่วโมง <span className="text-lg">(0%)</span>
                     </div>
-                    <div className="bg-gray-200 px-4 py-1 text-xs rounded-[4px]">
+                    <div className="bg-gray-200 px-4 py-1 text-xs rounded-[4px] hidden md:block">
                       เหลืออีก 30 ชั่วโมง
                     </div>
                   </div>
@@ -71,12 +77,12 @@ export default function Main() {
                 </div>
               )}
             </div>
-            <div className="text-lg rounded-xs px-10 py-3 text-white border-white border cursor-pointer">
+            <div className="text-lg rounded-xs px-10 py-3 text-white border-white border cursor-pointer  mx-auto md:mx-0">
               คลิกเพื่อดูรายละเอียด
             </div>
           </div>
         )}
-        <div className="flex items-center gap-2 mt-6">
+        <div className="flex items-center gap-2 mt-6  mx-3 md:mx-0">
           <div className="bg-lightBlue rounded-xs w-[48px] h-[48px] flex items-center justify-center">
             <img src="/learning.svg" className="w-[32px] h-[32px]"></img>
           </div>
