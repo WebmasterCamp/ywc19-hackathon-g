@@ -6,9 +6,7 @@ const LoadingScreen = ({ isLoading }: any) => {
         (isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none')
       }
     >
-      <div className="text-4xl font-semibold text-primary mb-5">
-        ADVANCELANE
-      </div>
+      <div className="text-4xl font-semibold text-primary mb-5">มือโปร</div>
       <div
         className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
         role="status"

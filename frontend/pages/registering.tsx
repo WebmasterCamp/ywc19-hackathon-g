@@ -1,6 +1,7 @@
 import { ContractForm } from '@/components/ContractForm'
 import { ExperienceForm } from '@/components/ExperienceForm'
 import { JobForm } from '@/components/JobForm'
+import LoadingScreen from '@/components/LoadingScreen'
 import { SalaryForm } from '@/components/SalaryForm'
 import {
   ContractOptions,
@@ -8,6 +9,7 @@ import {
   JobOptions,
   SalaryOptions,
 } from '@/constant/enum'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 enum FormSteps {
@@ -46,95 +48,101 @@ export default function Home() {
   const [job, setJob] = useState<JobOptions | null>(null)
   const [experience, setExperience] = useState<ExperienceOptions | null>(null)
   const [contractType, setContractType] = useState<ContractOptions | null>(null)
+  const [isLoading, setIsLoading] = useState<Boolean>(false)
+  const router = useRouter()
 
-  console.log('salary', salary)
-  console.log('job', job)
+  const formHandle = () => {
+    setIsLoading(true)
+    setTimeout(() => {
+      setIsLoading(false)
+      router.push('/')
+    }, 1000)
+  }
 
   return (
-    <div className="bg-lightBlue min-h-screen pt-[27px]">
-      <p className="text-[40px] text-center font-semibold">
-        ประเมินทักษะของคุณ
-      </p>
-      <p className="text-lg text-center pb-[45px]">
-        จับคู่งานช่วยให้คุณมีโอกาสที่เหมาะสมตามทักษะและความชอบของคุณ
-      </p>
-      <div className="flex max-w-[1200px] mx-auto pb-[68px]">
-        <div className="w-1/2 flex flex-col mt-5  gap-10">
-          {steps.map((step) => (
-            <>
-              <Step
-                title={step.title}
-                desc={step.desc}
-                number={step.number}
-                currentForm={currectForm}
+    <div>
+      <LoadingScreen isLoading={isLoading} />
+      <div className="bg-lightBlue min-h-screen pt-[27px]">
+        <p className="text-[40px] text-center font-semibold">
+          ประเมินทักษะของคุณ
+        </p>
+        <p className="text-lg text-center pb-[45px]">
+          จับคู่งานช่วยให้คุณมีโอกาสที่เหมาะสมตามทักษะและความชอบของคุณ
+        </p>
+        <div className="flex max-w-[1200px] mx-auto pb-[68px] justify-center lg:justify-between px-5 lg:px-0">
+          <div className="flex-col mt-5  gap-10  hidden lg:flex">
+            {steps.map((step) => (
+              <>
+                <Step
+                  title={step.title}
+                  desc={step.desc}
+                  number={step.number}
+                  currentForm={currectForm}
+                />
+                {/* <div className="h-[50px] border-l-[3px] ml-[30px] border-primary "></div> */}
+              </>
+            ))}
+          </div>
+          <div className="w-full max-w-[600px]">
+            {currectForm === FormSteps.SALARY && (
+              <SalaryForm
+                selectedOption={salary}
+                handleOptionChange={(option) => {
+                  setSalary(option)
+                }}
               />
-              {/* <div className="h-[50px] border-l-[3px] ml-[30px] border-primary "></div> */}
-            </>
-          ))}
-        </div>
-        <div className="w-1/2">
-          {currectForm === FormSteps.SALARY && (
-            <SalaryForm
-              selectedOption={salary}
-              handleOptionChange={(option) => {
-                setSalary(option)
-              }}
-            />
-          )}
-          {currectForm === FormSteps.JOB && (
-            <JobForm
-              selectedOption={job}
-              handleOptionChange={(option) => {
-                setJob(option)
-              }}
-            />
-          )}
-          {currectForm === FormSteps.EXPERIENCE && (
-            <ExperienceForm
-              selectedOption={experience}
-              handleOptionChange={(option) => {
-                setExperience(option)
-              }}
-            />
-          )}
-          {currectForm === FormSteps.CONTRACT_TYPE && (
-            <ContractForm
-              selectedOption={contractType}
-              handleOptionChange={(option) => {
-                setContractType(option)
-              }}
-            />
-          )}
-          <div className="flex gap-5">
-            {currectForm !== FormSteps.SALARY && (
+            )}
+            {currectForm === FormSteps.JOB && (
+              <JobForm
+                selectedOption={job}
+                handleOptionChange={(option) => {
+                  setJob(option)
+                }}
+              />
+            )}
+            {currectForm === FormSteps.EXPERIENCE && (
+              <ExperienceForm
+                selectedOption={experience}
+                handleOptionChange={(option) => {
+                  setExperience(option)
+                }}
+              />
+            )}
+            {currectForm === FormSteps.CONTRACT_TYPE && (
+              <ContractForm
+                selectedOption={contractType}
+                handleOptionChange={(option) => {
+                  setContractType(option)
+                }}
+              />
+            )}
+            <div className="flex gap-5">
+              {currectForm !== FormSteps.SALARY && (
+                <button
+                  className=" bg-transparent w-full h-[48px] rounded-xs text-primary border border-primary mt-5 text-lg font-normal"
+                  onClick={() => {
+                    setCurrectForm(currectForm - 1)
+                  }}
+                >
+                  ก่อนหน้า
+                </button>
+              )}
               <button
-                className=" bg-transparent w-full h-[48px] rounded-xs text-primary border border-primary mt-5 text-lg font-normal"
+                className="bg-primary w-full h-[48px] rounded-xs text-white border mt-5 text-lg "
                 onClick={() => {
-                  setCurrectForm(currectForm - 1)
+                  if (currectForm !== FormSteps.CONTRACT_TYPE) {
+                    setCurrectForm(currectForm + 1)
+                    return
+                  }
+                  formHandle()
+                  console.log('aa')
                 }}
               >
-                ก่อนหน้า
+                <p className="font-normal">
+                  {currectForm !== FormSteps.CONTRACT_TYPE ? 'ต่อไป' : 'ส่ง'}
+                </p>
               </button>
-            )}
-            <button
-              className="bg-primary w-full h-[48px] rounded-xs text-white border mt-5 text-lg "
-              onClick={() => {
-                if (currectForm !== FormSteps.CONTRACT_TYPE) {
-                  setCurrectForm(currectForm + 1)
-                  return
-                }
-                console.log('submit', {
-                  salary,
-                  job,
-                  experience,
-                  contractType,
-                })
-              }}
-            >
-              <p className="font-normal">
-                {currectForm !== FormSteps.CONTRACT_TYPE ? 'ต่อไป' : 'ส่ง'}
-              </p>
-            </button>
+            </div>
           </div>
         </div>
       </div>
