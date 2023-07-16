@@ -10,23 +10,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 export default function Main() {
-  const course: any = {
-    id: '1',
-    name: 'ต่อเติม ซ่อมแซมบ้าน',
-    description: 'เรียนรู้งานการก่อโครงหลังคาเหล็ก ต่อเติมบ้าน',
-    location: 'กรุงเทพมหานคร',
-    schedule: [
-      {
-        lessonNo: 1,
-        title: '',
-        dateTime: '2023-07-06 06:31:34',
-      },
-    ],
-    duration: '5 อาทิตย์ (30 ชั่วโมง)',
-    certificate: true,
-    test: true,
-    img: '/images/course-1.png',
-  }
+  const course: any = getLatestCourse()
 
   const user = getUserDetail()
   const router = useRouter()
@@ -39,6 +23,8 @@ export default function Main() {
       }, 5000)
     }
   }, [])
+
+  console.log('course', course)
 
   return (
     <div>
@@ -99,10 +85,16 @@ export default function Main() {
           <div className="text-2xl font-medium">คอร์สที่คุณกำลังเรียนอยู่</div>
         </div>
         {!course ? (
-          <img
-            src="/images/banner.svg"
-            className="mt-4 w-full object-contain  mx-3 xl:mx-0"
-          ></img>
+          <div className="mx-3 xl:mx-0">
+            <img
+              src="/images/banner.svg"
+              className="mt-4 w-[100%] object-cover  md:block hidden"
+            ></img>
+            <img
+              src="/images/banner-mobile.svg"
+              className="mt-4 w-full object-cover  md:hidden block"
+            ></img>
+          </div>
         ) : (
           <div className="min-h-[187px]  rounded-xs flex items-center px-10 py-5 justify-between bg-[url('/banner-bg.svg')] bg-cover mt-4 flex-wrap gap-y-10  mx-3 xl:mx-0">
             <div className="flex items-center ">
@@ -140,13 +132,13 @@ export default function Main() {
           </div>
           <div className="text-2xl font-medium">คอร์สที่แนะนำสำหรับคุณ</div>
         </div>
-      </div>
-      <div className="flex gap-3 overflow-auto max-w-[1500px] mx-auto px-5 mb-10 mt-6 no-scrollbar">
-        {courses.map((course) => {
-          if (!search) return <CourseCard course={course} />
-          if (course.name.includes(search))
-            return <CourseCard course={course} />
-        })}
+        <div className="flex gap-3 overflow-auto max-w-[1500px]  mb-10 mt-6 no-scrollbar  mx-3 xl:mx-0">
+          {courses.map((course) => {
+            if (!search) return <CourseCard course={course} />
+            if (course.name.includes(search))
+              return <CourseCard course={course} />
+          })}
+        </div>
       </div>
     </div>
   )
