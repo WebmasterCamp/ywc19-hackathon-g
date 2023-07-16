@@ -20,7 +20,7 @@ export default function Main() {
     if (course) {
       setTimeout(() => {
         completedLatestCourse()
-      }, 5000)
+      }, 2000)
     }
   }, [])
 
@@ -119,7 +119,7 @@ export default function Main() {
                 </div>
               ) : (
                 <div className="text-white text-4xl max-w-[390px]">
-                  ยินดีด้วย คุณเรียนคอร์ส {course?.name} !
+                  ยินดีด้วย คุณเรียนคอร์ส {course?.name}จบแล้ว !
                 </div>
               )}
             </div>
