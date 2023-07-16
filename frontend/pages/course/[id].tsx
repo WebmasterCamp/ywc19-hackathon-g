@@ -121,7 +121,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
               สมัครเรียน
             </>
           )}
-          {!course?.completed && course?.id === matchedCourse.id && (
+          {!course?.completed && course?.id === matchedCourse?.id && (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
