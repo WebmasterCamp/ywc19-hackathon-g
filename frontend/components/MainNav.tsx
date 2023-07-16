@@ -34,7 +34,7 @@ const MainNav = () => {
       ) : (
         <button
           onClick={() => router.push('/login')}
-          className=" bg-primary rounded-xs text-white py-3 text-sm font-light px-4 mr-3 md:mr-0"
+          className=" bg-primary rounded-xs text-white py-3 text-sm font-light px-4 mr-3 md:mr-0  "
         >
           เข้าสู่ระบบ / ลงทะเบียน
         </button>

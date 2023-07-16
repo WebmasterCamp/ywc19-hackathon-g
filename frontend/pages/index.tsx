@@ -2,6 +2,7 @@ import { CourseCard } from '@/components/CourseCard'
 import TextInput from '@/components/TextInput'
 import { courses } from '@/constant/courses'
 import { getLatestCourse, getUserDetail } from '@/helper/user-helper'
+import { useRouter } from 'next/router'
 
 export default function Main() {
   const course: any = {
@@ -22,10 +23,45 @@ export default function Main() {
     img: '/images/course-1.png',
   }
   const user = getUserDetail()
-  console.log('user', user)
+  const router = useRouter()
 
   return (
     <div>
+      <div className="flex items-center gap-5 mt-4 max-w-[1200px] mx-auto ">
+        <img src="/logo.svg" className="h-[28px] ml-3 md:ml-0"></img>
+        <div className="flex-grow">
+          <div className="relative bg-gray-100 w-full  py-4 px-4 rounded-xs h-[48px] hidden md:flex">
+            <div className="mr-3 w-5 flex items-center">
+              <img src="/search.svg" alt="icons" />
+            </div>
+            <div className="flex items-center w-full">
+              <input
+                className="outline-none w-full bg-gray-100"
+                type={'text'}
+                placeholder={'ค้นหา'}
+              />
+            </div>
+          </div>
+        </div>
+        {user ? (
+          <div className="flex">
+            <div className="bg-[#D9D9D9]  rounded-[100%] w-[48px] h-[48px]"></div>
+            <div className="ml-2">
+              <div>K. {user?.username || '-'}</div>
+              <div className="text-sm text-[#9D9D9D]" style={{ marginTop: -2 }}>
+                090-xxx-xxx
+              </div>
+            </div>
+          </div>
+        ) : (
+          <button
+            onClick={() => router.push('/login')}
+            className=" bg-primary rounded-xs text-white py-3 text-sm font-light px-4 mr-3 md:mr-0  "
+          >
+            เข้าสู่ระบบ / ลงทะเบียน
+          </button>
+        )}
+      </div>
       <div className="max-w-[1200px] mx-auto">
         <div className="text-[40px] font-semibold mt-4 text-center">
           {user ? (
