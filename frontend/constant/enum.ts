@@ -88,6 +88,7 @@ export type Course = {
     dateTime: string
   }[]
   duration: string
+  img: string
   certificate?: boolean
   test?: boolean
 }

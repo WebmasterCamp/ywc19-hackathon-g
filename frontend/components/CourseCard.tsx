@@ -8,13 +8,14 @@ export const CourseCard = ({
     name,
     certificate = false,
     test = false,
+    img,
   },
 }: {
   course?: Course
 }) => {
   return (
     <div className="min-w-[290px] border-[0.5px] border-[#D6D6D6] rounded-xs">
-      <img src="/testimg.png" className="w-[100%] "></img>
+      <img src={img} className="w-[100%] "></img>
       <div className="p-4">
         <div className="text-lg">{name}</div>
         <div className="mt-1 text-xs text-gray-300">{description}</div>
