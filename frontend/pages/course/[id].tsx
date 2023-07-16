@@ -1,12 +1,14 @@
 import PolicyModal from '@/components/PolicyModal'
 import { courses } from '@/constant/courses'
 import { Course, monthMapping } from '@/constant/enum'
+import { getUserDetail } from '@/helper/user-helper'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
 
 const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(true)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const user = getUserDetail()
 
   const jobRegistrationPolicy = {
     mainTitle: 'แบบยินยอมการยอมรับเงื่อนไขการสมัคร',
@@ -76,7 +78,10 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
         </div>
         <div
           onClick={() => setIsOpen(true)}
-          className="bg-primary cursor-pointer rounded-xs py-2.5 px-14 flex items-center text-white whitespace-nowrap text-[18px]"
+          className={
+            'bg-primary cursor-pointer rounded-xs py-2.5 px-14 flex items-center text-white whitespace-nowrap text-[18px] ' +
+            (!user && 'opacity-60 pointer-events-none')
+          }
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
