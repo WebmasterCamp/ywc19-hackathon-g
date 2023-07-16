@@ -14,7 +14,7 @@ export const CourseCard = ({
   course?: Course
 }) => {
   return (
-    <div className="min-w-[290px] border-[0.5px] border-[#D6D6D6] rounded-xs">
+    <div className="min-w-[300px] max-w-[300px]  border-[0.5px] border-[#D6D6D6] rounded-xs">
       <img src={img} className="w-[100%] "></img>
       <div className="p-4">
         <div className="text-lg">{name}</div>

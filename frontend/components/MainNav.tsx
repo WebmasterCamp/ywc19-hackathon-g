@@ -22,7 +22,7 @@ const MainNav = () => {
         </div> */}
       </div>
       {user ? (
-        <div className="flex">
+        <div className="flex mr-3 md:mr-0 ">
           <div className="bg-[#D9D9D9]  rounded-[100%] w-[48px] h-[48px]"></div>
           <div className="ml-2">
             <div>K. {user?.username || '-'}</div>

@@ -119,7 +119,7 @@ export default function Home() {
             <div className="flex gap-5">
               {currectForm !== FormSteps.SALARY && (
                 <button
-                  className=" bg-transparent w-full h-[48px] rounded-xs text-primary border border-primary mt-5 text-lg font-normal"
+                  className=" bg-transparent w-full h-[48px] rounded-xs text-primary border border-primary mt-5 text-lg font-normal "
                   onClick={() => {
                     setCurrectForm(currectForm - 1)
                   }}
@@ -128,12 +128,19 @@ export default function Home() {
                 </button>
               )}
               <button
-                className="bg-primary w-full h-[48px] rounded-xs text-white border mt-5 text-lg "
+                className={
+                  `bg-primary w-full h-[48px] rounded-xs text-white border mt-5 text-lg ` +
+                  ((!salary || !job || !experience || !contractType) &&
+                  currectForm === FormSteps.CONTRACT_TYPE
+                    ? ' bg-gray-200 pointer-events-none'
+                    : ' ')
+                }
                 onClick={() => {
                   if (currectForm !== FormSteps.CONTRACT_TYPE) {
                     setCurrectForm(currectForm + 1)
                     return
                   }
+                  if (!salary || !job || !experience || !contractType) return
                   formHandle()
                   console.log('aa')
                 }}

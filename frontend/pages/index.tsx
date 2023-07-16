@@ -1,8 +1,13 @@
 import { CourseCard } from '@/components/CourseCard'
 import TextInput from '@/components/TextInput'
 import { courses } from '@/constant/courses'
-import { getLatestCourse, getUserDetail } from '@/helper/user-helper'
+import {
+  completedLatestCourse,
+  getLatestCourse,
+  getUserDetail,
+} from '@/helper/user-helper'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 export default function Main() {
   const course: any = {
@@ -22,8 +27,18 @@ export default function Main() {
     test: true,
     img: '/images/course-1.png',
   }
+
   const user = getUserDetail()
   const router = useRouter()
+  const [search, setSearch] = useState('')
+
+  useEffect(() => {
+    if (course) {
+      setTimeout(() => {
+        completedLatestCourse()
+      }, 5000)
+    }
+  }, [])
 
   return (
     <div>
@@ -39,12 +54,13 @@ export default function Main() {
                 className="outline-none w-full bg-gray-100"
                 type={'text'}
                 placeholder={'ค้นหา'}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </div>
           </div>
         </div>
         {user ? (
-          <div className="flex">
+          <div className="flex mr-3 md:mr-0 ">
             <div className="bg-[#D9D9D9]  rounded-[100%] w-[48px] h-[48px]"></div>
             <div className="ml-2">
               <div>K. {user?.username || '-'}</div>
@@ -126,9 +142,11 @@ export default function Main() {
         </div>
       </div>
       <div className="flex gap-3 overflow-auto max-w-[1500px] mx-auto px-5 mb-10 mt-6 no-scrollbar">
-        {courses.map((course) => (
-          <CourseCard course={course} />
-        ))}
+        {courses.map((course) => {
+          if (!search) return <CourseCard course={course} />
+          if (course.name.includes(search))
+            return <CourseCard course={course} />
+        })}
       </div>
     </div>
   )
