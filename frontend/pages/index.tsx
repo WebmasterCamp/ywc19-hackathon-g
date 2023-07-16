@@ -49,7 +49,7 @@ export default function Main() {
           <div className="flex mr-3 xl:mr-0 ">
             <div className="bg-[#D9D9D9]  rounded-[100%] w-[48px] h-[48px]"></div>
             <div className="ml-2">
-              <div>K. {user?.username || '-'}</div>
+              <div>K. {user?.username || 'พัฒนา'}</div>
               <div className="text-sm text-[#9D9D9D]" style={{ marginTop: -2 }}>
                 090-xxx-xxx
               </div>
@@ -69,7 +69,9 @@ export default function Main() {
           {user ? (
             <>
               สวัสดี,{' '}
-              <span className="text-primary">คุณ{user?.username || '-'}</span>{' '}
+              <span className="text-primary">
+                คุณ{user?.username || 'พัฒนา'}
+              </span>{' '}
             </>
           ) : (
             <>ยินดีต้อนรับสู่มือโปร</>
