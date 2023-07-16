@@ -29,7 +29,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
   return (
     <div className="max-w-[1200px] mx-auto mt-10 mb-14">
       <PolicyModal
-        courseId={matchedCourse.id}
+        course={matchedCourse}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         mainTitle={jobRegistrationPolicy.mainTitle}
