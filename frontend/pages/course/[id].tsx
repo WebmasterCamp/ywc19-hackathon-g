@@ -84,7 +84,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
           className={
             'cursor-pointer rounded-xs py-2.5 px-14 flex items-center whitespace-nowrap text-[18px] ' +
             (!user && 'opacity-60 pointer-events-none ') +
-            (!course?.completed && course?.id === matchedCourse.id
+            (!course?.completed && course?.id === matchedCourse?.id
               ? ' bg-[#D0D0D0] text-[#A1A1A1] cursor-default'
               : ' bg-primary text-white')
           }
@@ -138,7 +138,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
               สมัครเรียนเรียบร้อยแล้ว
             </>
           )}
-          {course?.completed && course?.id === matchedCourse.id && (
+          {course?.completed && course?.id === matchedCourse?.id && (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -259,7 +259,7 @@ const CourseInfo = ({ matchedCourse }: { matchedCourse: Course }) => {
                   สัปดาห์ที่ {lesson.lessonNo}
                 </div>
                 <div className="text-[20px] pr-5"> {lesson.title}</div>
-                {course?.completed && course?.id === matchedCourse.id && (
+                {course?.completed && course?.id === matchedCourse?.id && (
                   <div className="absolute right-5 top-1/2 -translate-y-1/2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
