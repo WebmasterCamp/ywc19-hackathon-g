@@ -83,7 +83,7 @@ const TextInput = ({ type, placeholder, onChange }: any) => {
   }
 
   return (
-    <div className="relative bg-white w-full flex py-4 px-4 rounded-[2px]">
+    <div className="relative bg-white w-full flex py-4 px-4 rounded-sm">
       {icons[type]}
       <div className="flex items-center w-full">
         <input
